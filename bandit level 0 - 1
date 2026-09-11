@@ -1,0 +1,71 @@
+         Step 1 — Read the Level Goal
+
+The goal says that the password for the next level is stored in a file called readme in the home directory.
+
+The important information is:
+
+Username: bandit0
+Server: bandit.labs.overthewire.org
+Port: 2220
+
+          Step 2 — Login to the Bandit Server
+
+I connected to the Bandit server using SSH.
+
+ssh bandit0@bandit.labs.overthewire.org -p 2220
+Explanation
+ssh → Secure Shell command used to connect to a remote server.
+bandit0 → Username for the current level.
+bandit.labs.overthewire.org → Server hostname.
+-p 2220 → Specifies that SSH should use port 2220.
+
+After entering the Level 0 password, I successfully logged in
+
+
+         Step 3 — Check the Current Directory
+
+After logging in, I checked the files in the current directory using:
+
+input
+
+ls
+
+The output was:
+
+readme
+
+ls is a Linux command used to list files and directories in the current location.
+
+Here, we can see a file named:
+
+readme
+
+         Step 4 — Read the readme File
+
+The level goal tells us that the password is inside the readme file.
+
+So I used:
+
+cat readme
+Explanation
+
+cat is a Linux command used to display the contents of a file in the terminal.
+
+The command displayed the password required for the next level.
+
+cat readme
+
+can be understood as:
+
+cat       readme
+ │          │
+ │          └── File we want to read
+ └───────────── Command used to display file contents
+
+ 6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR
+
+ Commands Used
+ssh bandit0@bandit.labs.overthewire.org -p 2220
+ls
+cat readme
+
