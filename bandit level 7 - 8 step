@@ -1,0 +1,79 @@
+                      Step 1: Check the files
+
+After logging in as bandit7, use:
+
+ls
+
+The screenshot shows:
+
+data.txt
+
+So the required data is stored inside data.txt.
+
+                        Step 2: Understand the problem
+
+The data.txt file contains many lines of words and passwords.
+
+Our goal is to find the line containing the word:
+
+millionth
+
+Instead of manually searching through all the lines, we can use the grep command.
+
+                          Step 3: Search for the required word
+
+Use:
+
+cat data.txt | grep 'millionth'
+
+In the screenshot, this command successfully finds the line containing millionth.
+
+                            Step 4: Understand the command
+cat data.txt
+cat data.txt
+
+cat displays the contents of data.txt.
+
+| — Pipe
+|
+
+The pipe sends the output of the cat command to the next command.
+
+grep 'millionth'
+grep 'millionth'
+
+grep searches the incoming text for the word millionth.
+
+So:
+
+cat data.txt | grep 'millionth'
+
+means:
+
+Display the contents of data.txt and search for the line containing millionth.
+
+                         Step 5: Identify the result
+
+The command returns:
+
+millionth    [password]
+
+The value beside millionth is the password required for Bandit Level 8.
+
+                          Step 6: Save the password
+
+Copy the password carefully.
+
+You will use it to log in as:
+
+bandit8
+Commands used
+ls
+cat data.txt | grep 'millionth'
+
+what i learned
+
+In this level, I learned how to use the grep command to search for a specific word inside a file.
+learned how the pipe (|) operator can connect two Linux commands and pass the output of one command to another.
+
+pass bandit8 : VR1ljMayciFxbnUokuQmJFw6QC9VKtub
