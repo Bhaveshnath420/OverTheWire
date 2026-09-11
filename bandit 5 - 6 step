@@ -1,0 +1,194 @@
+Bandit Level 5 → Level 6
+ Level Goal
+
+The password for the next level is stored in a file somewhere under the inhere directory.
+
+The required file has a specific size of 1033 bytes.
+
+            Step 1 — Check the inhere Directory
+
+After logging in as bandit5, I used:
+
+ls
+
+The output showed:
+
+inhere
+
+I entered the directory using:
+
+cd inhere
+Explanation
+ls → lists files and directories.
+cd inhere → moves into the inhere directory.
+
+               Step 2 — List the Directories
+
+Inside inhere, I used:
+
+ls
+
+There were many directories:
+
+maybehere00
+maybehere01
+maybehere02
+...
+maybehere19
+Explanation
+
+There are many directories, so manually checking every file would take a lot of time.
+
+Instead, I used find to search automatically.
+
+                Step 3 — Understand the find Size Option
+
+I initially tried:
+
+find | grep'size'
+
+This was incorrect because grep'size' was interpreted incorrectly.
+
+I then opened the find manual and searched for information about size:
+
+man find | grep "size"
+Explanation
+
+man find opens the manual page for the find command.
+
+grep "size"
+
+searches the manual output for the word size.
+
+From the manual, I learned that:
+
+-size
+
+can be used to search for files based on their size.
+
+                    Step 4 — Search for the 1033-Byte File
+
+I used:
+
+find . -size 1033c
+Explanation
+
+Let's break this command down:
+
+find
+
+→ Searches for files and directories.
+
+.
+
+→ Starts searching from the current directory.
+
+-size 1033c
+
+→ Finds files whose size is 1033 bytes.
+
+Here, c means bytes.
+
+The command returned:
+
+./maybehere07/./file2
+
+So the required file was inside:
+
+maybehere07
+                     Step 5 — Enter the Correct Directory
+
+I used:
+
+cd maybehere07
+
+Now my prompt showed that I was inside:
+
+~/inhere/maybehere07
+                        Step 6 — List the Files
+
+I used:
+
+ls
+
+The output showed:
+
+-file1
+file3
+spaces
+file1
+spaces file2
+spaces file3
+
+Among these files, I needed to identify the correct one returned by the find command.
+
+The find result indicated:
+
+./maybehere07/./file2
+                          Step 7 — Try to Read file2
+
+I first tried:
+
+cat file2
+
+This produced:
+
+cat: file2: No such file or directory
+Why?
+
+The actual filename was:
+
+.file2
+
+It starts with a dot, which makes it a hidden file.
+
+                              Step 8 — Read the Hidden File
+
+I corrected the command:
+
+cat .file2
+
+This successfully displayed the password for Bandit Level 6.
+
+Commands Used
+ls
+cd inhere
+ls
+man find | grep "size"
+find . -size 1033c
+cd maybehere07
+ls
+cat .file2
+
+----- What I Learned
+find
+
+Used to search for files and directories.
+
+find . -size 1033c
+
+searches for a file with a size of 1033 bytes.
+
+man
+
+Used to view the manual/documentation of a Linux command.
+
+man find
+grep
+
+Used to search for specific text.
+
+grep "size"
+Hidden Files
+
+A filename beginning with . is normally hidden.
+
+Example:
+
+.file2
+
+It can still be accessed directly:
+
+cat .file2 
+
+pass bandit6 : pXa26xhMWaC2SvDotA4r9EgZkulOeSBW
