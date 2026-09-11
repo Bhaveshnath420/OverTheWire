@@ -1,0 +1,99 @@
+                Step 1: Check the file
+
+After logging in as bandit8, the file containing the data is data.txt.
+
+Use:
+
+ls
+
+This confirms that data.txt is available.
+
+                  Step 2: Display the file contents
+
+Use:
+
+cat data.txt
+
+The screenshot shows that data.txt contains many lines of text.
+
+Because there are many repeated lines, manually finding the unique line would be difficult.
+
+                    Step 3: Sort the lines
+
+Use the sort command:
+
+sort data.txt
+
+sort arranges the lines in alphabetical/numerical order.
+
+This makes identical lines appear next to each other.
+
+                    Step 4: Remove duplicate lines
+ 
+We can use uniq after sorting:
+
+sort data.txt | uniq
+
+However, the goal is to find the line that appears only once.
+
+So we use:
+
+uniq -u
+
+The -u option means unique — display only lines that occur exactly once.
+
+                       Step 5: Use the complete command
+
+Your screenshot shows:
+
+cat data.txt | sort | uniq -u
+
+This performs three operations:
+
+cat data.txt
+      ↓
+Displays the file
+      ↓
+sort
+      ↓
+Sorts all lines
+      ↓
+uniq -u
+      ↓
+Finds the line occurring only once
+                       Step 6: Understand the pipe |
+
+The | symbol is called a pipe.
+
+For example:
+
+cat data.txt | sort
+
+means:
+
+Take the output of cat data.txt and send it as input to sort.
+
+Similarly:
+
+sort | uniq -u
+
+means:
+
+Send the sorted lines to uniq -u.
+
+So the complete command connects three commands together.
+
+             Step 7: Get the unique line
+
+The command:
+
+cat data.txt | sort | uniq -u
+
+returns a single line in your screenshot. That unique line is the required password for the next level.
+
+Commands Used
+ls
+cat data.txt
+cat data.txt | sort | uniq -u
+
+pass bandit9 : EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl
