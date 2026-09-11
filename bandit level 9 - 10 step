@@ -1,0 +1,83 @@
+                  Step 1: Check the files
+
+After logging in as bandit9, use:
+
+ls
+
+The screenshot shows:
+
+data.txt
+
+So the required information is stored in data.txt.
+
+                     Step 2: Check the file type
+
+Use:
+
+file data.txt
+
+This helps determine whether the file contains normal text or binary data.
+
+                       Step 3: Try to display the file
+
+Use:
+
+cat data.txt
+
+The output contains many unreadable characters. This indicates that the file contains binary/non-readable data along with some readable text.
+
+                           Step 4: Use the strings command
+ 
+To extract readable text from the binary file, use:
+
+strings data.txt
+
+The strings command searches the file and displays sequences of printable/readable characters.
+
+The screenshot shows that this produces readable words mixed with other text.
+
+                          Step 5: Search for the = character
+
+The level requires finding the readable text containing several = characters.
+
+Use:
+
+strings data.txt | grep "="
+Meaning:
+strings data.txt
+       ↓
+Extract readable text
+       ↓
+      |
+       ↓
+grep "="
+       ↓
+Find lines containing =
+Step 6: Understand grep "="
+
+The command:
+
+grep "="
+
+searches the input for the = character.
+
+This filters out the large amount of irrelevant output and leaves the lines that contain =.
+
+                      Step 7: Identify the password
+
+The command:
+
+strings data.txt | grep "="
+
+returns several matching lines. Among them, the line containing the required password can be identified from the output shown in your screenshot.
+
+Do not include the actual password in a public GitHub write-up.
+
+Commands Used
+ls
+file data.txt
+cat data.txt
+strings data.txt
+strings data.txt | grep "="
+
+pass bandit10: B0s2khmbT9u0geKuOoVGW3JZKhndE3BG 
