@@ -1,0 +1,176 @@
+Bandit Level 3 → Level 4
+🎯 Level Goal
+
+The password for the next level is stored in a hidden file in the inhere directory.
+
+           Step 1 — Check the Current Directory
+
+After logging in as bandit3, I used:
+
+ls
+
+The output showed:
+
+inhere
+Explanation
+
+ls is used to list the files and directories in the current directory.
+
+Here, I found a directory named:
+
+inhere
+               Step 2 — Enter the inhere Directory
+
+I used the cd command:
+
+cd inhere
+Explanation
+
+cd means Change Directory.
+
+So:
+
+cd inhere
+
+moves me from the home directory into the inhere directory.
+
+My terminal prompt changed to:
+
+bandit3@bandit:~/inhere$
+
+This confirms that I am now inside the inhere directory.
+
+
+                Step 3 — List All Files Including Hidden Files
+
+I used:
+
+ll
+
+The output showed:
+
+...Hiding-From-You
+Explanation
+
+The file starts with . characters, so it is a hidden file.
+
+The important filename is:
+
+...Hiding-From-You
+
+                  Step 4 — Understand the ll Output
+
+The ll output showed:
+
+-rw-r----- 1 bandit4 bandit3 33 ...Hiding-From-You
+
+The important parts are:
+
+-rw-r-----
+
+→ File permissions
+
+bandit4
+
+→ File owner
+
+bandit3
+
+→ Group
+
+33
+
+→ File size
+
+...Hiding-From-You
+
+→ File name
+
+Important
+
+The filename is not:
+
+-rw-r-----
+
+That part is the file's permission information.
+
+The actual filename is:
+
+...Hiding-From-You
+
+                Step 5 — First Attempt
+
+I accidentally tried:
+
+cat -- -rw-r-----
+
+This produced:
+
+cat: -rw-r-----: No such file or directory
+Explanation
+
+I mistakenly used the permission information as the filename.
+
+The actual filename was:
+
+...Hiding-From-You
+
+                     Step 6 — Another Incorrect Attempt
+
+I then tried using:
+
+cat -r
+
+This produced an error because cat interpreted -r as an option rather than as part of a filename.
+
+The terminal suggested using:
+
+-- -r
+
+to treat -r as a normal value.
+
+This helped me understand that characters beginning with - can sometimes be interpreted as command options.
+
+                     Step 7 — Read the Hidden File
+
+Finally, I used the correct filename:
+
+cat './...Hiding-From-You'
+
+The command successfully displayed the password for the next level.
+
+Explanation
+
+The single quotes:
+
+' '
+
+tell the shell to treat everything inside them as one filename.
+
+The ./ means:
+
+The file is located in the current directory.
+
+Therefore:
+
+cat './...Hiding-From-You'
+
+means:
+
+Display the contents of the ...Hiding-From-You file in the current directory.
+
+used commands 
+
+ls
+cd inhere
+ll
+cat './...Hiding-From-You'
+
+ls - is used to list files and directories.
+cd - is used to change directories.
+ll - can be used to view detailed file information, including hidden files.
+Files beginning with . can be hidden files in Linux.
+File permissions such as -rw-r----- are different from the filename.
+Quotes can be used to handle filenames safely.
+./ - refers to the current directory.
+cat - is used to display the contents of a file.
