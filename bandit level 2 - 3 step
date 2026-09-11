@@ -1,0 +1,133 @@
+Bandit Level 2 → Level 3
+ Level Goal
+
+The password for the next level is stored in a file called:
+
+--spaces in this filename--
+
+The filename contains spaces, so we need to handle the filename correctly when using Linux commands.
+
+             Step 1 — Check the Files
+
+First, I used the ls command to list the files in the current directory.
+
+ls
+
+The output showed:
+
+--spaces in this filename--
+Explanation
+
+ls is used to list the files and directories in the current directory.
+
+Here, I found a file whose name contains multiple spaces:
+
+--spaces in this filename--
+
+              Step 2 — Try to Read the File
+
+I tried to read the file using:
+
+cat "--spaces in this filename--"
+
+The password was displayed successfully.
+
+Explanation
+
+The double quotes " " are used to treat the entire filename as one argument, including the spaces.
+
+Without quotes, Linux may interpret each space-separated part as a separate argument.
+
+For example:
+
+cat --spaces in this filename--
+
+would not correctly represent the filename. 
+
+                Step 3 — Check the Current Directory
+
+I used:
+
+pwd
+
+The output was:
+
+/home/bandit2
+Explanation
+
+pwd means Print Working Directory.
+
+It shows the complete path of the directory where I am currently working.
+
+So I was inside:
+
+/home/bandit2
+
+               Step 4 — Understanding the Filename
+
+The filename starts with:
+
+--
+
+and also contains spaces:
+
+--spaces in this filename--
+
+This makes the filename slightly tricky to work with because:
+
+Spaces normally separate arguments in the shell.
+A filename beginning with - can sometimes be interpreted as an option by a command.
+
+Therefore, it is safer to explicitly specify the file path.
+
+                Step 5 — Use ./ to Specify the File
+
+I also successfully used:
+
+cat ./--spaces\ in\ this\ filename--
+Explanation
+
+./ means:
+
+The current directory.
+
+So:
+
+./--spaces\ in\ this\ filename--
+
+means:
+
+The file named --spaces in this filename-- in the current directory.
+
+The backslash \ is used before each space to tell Linux that the space is part of the filename.
+
+                   Step 6 — Use the Absolute Path
+
+I also used the complete path:
+
+cat /home/bandit2/--spaces\ in\ this\ filename--
+
+This specifies exactly where the file is located.
+
+The command successfully displayed the password.
+
+From this level, I learned:
+
+How to list files using ls.
+How to check the current directory using pwd.
+How to read files using cat.
+How to handle filenames containing spaces.
+How to use \ to escape spaces.
+How ./ can be used to specify a file in the current directory.
+Why filenames beginning with - can require special handling.
+
+A reliable way to access it is:
+
+cat ./--spaces\ in\ this\ filename--
+
+or by using its absolute path:
+
+cat /home/bandit2/--spaces\ in\ this\ filename-- 
+
+And many solutions are uploaded in bandit level 2 - 3 image 
+kindly refer it 
