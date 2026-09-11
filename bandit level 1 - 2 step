@@ -1,0 +1,143 @@
+Bandit Level 1 → Level 2
+Level Goal
+
+The password for the next level is stored in a file called - located in the home directory.
+
+The challenge is to read the contents of this file.
+
+befor going bandit level 1
+first exit bandit level 0
+
+        Step 1 — Login to Bandit Level 1
+
+First, I logged into the Bandit server as bandit1.
+
+ssh bandit1@bandit.labs.overthewire.org -p 2220
+
+After entering the password obtained from the previous level, I successfully logged in.
+
+The terminal prompt became:
+
+bandit1@bandit:~$
+
+          Step 2 — List the Files
+
+I used:
+
+ls
+
+The output showed:
+
+-
+
+So, the file we need to read is actually named:
+
+-
+
+          Step 3 — Understand the Problem
+
+Normally, we can use:
+
+cat filename
+
+For example:
+
+cat readme
+
+But here the filename is only:
+
+-
+
+The - character has a special meaning in many Linux commands. It can be interpreted as standard input rather than an ordinary filename.
+
+Therefore, simply using:
+
+cat -
+
+is not the best way to specify this file.
+
+We need to tell Linux explicitly that - is a file in the current directory.
+
+            Step 4 — Read the File Using ./-
+
+I used:
+
+cat ./-
+Explanation
+
+Here:
+
+./
+
+means the current directory.
+
+Therefore:
+
+cat ./-
+
+means:
+
+Read the file named - from the current directory.
+
+The command successfully displayed the password for the next level.
+
+            Step 5 — Check the Current Directory
+
+To confirm where I was located, I used:
+
+pwd
+
+The output was:
+
+/home/bandit1
+Explanation
+
+pwd means Print Working Directory.
+
+It displays the full path of the directory you are currently working in.
+
+So:
+
+/home/bandit1
+
+is the home directory of the bandit1 user.
+
+             Step 6 — Read the File Using the Absolute Path
+
+Since I now knew the complete location of the file, I also used:
+
+cat /home/bandit1/-
+
+This also successfully displayed the password.
+
+Understanding the command
+cat        /home/bandit1/-
+ │              │       │
+ │              │       └── File name
+ │              └────────── Directory
+ └───────────────────────── Display file contents
+
+So:
+
+cat /home/bandit1/-
+
+means:
+
+Display the contents of the - file located inside /home/bandit1.
+
+
+pass bandit2 : PK8fYLZg2hnHSz83plBL1iEPKdD3QToB
+
+From this level, I learned:
+
+ls is used to list files.
+
+pwd displays the current directory.
+
+cat displays the contents of a file.
+
+A filename such as - can have a special meaning to Linux commands.
+
+./- explicitly refers to a file named - in the current directory.
+
+An absolute path such as /home/bandit1/- can also be used to access the file.
