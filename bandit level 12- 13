@@ -1,0 +1,189 @@
+Step 1 — Create a temporary directory
+
+Because you shouldn't modify the original data.txt, create a working directory:
+
+mkdir /tmp/test1
+
+Then enter it:
+
+cd /tmp/test1
+Step 2 — Copy the original file
+
+Copy the Level 12 file into your working directory:
+
+cp ~/data.txt .
+
+Now check:
+
+ls
+
+You should see:
+
+data.txt
+Step 3 — Convert the hexdump back into binary
+
+The original data.txt contains a hexadecimal dump.
+
+First convert it back to its original binary form:
+
+xxd -r data.txt data8.bin
+
+Now check the file:
+
+file data8.bin
+
+You may get:
+
+data8.bin: gzip compressed data
+
+This tells us that the file is GZIP compressed.
+
+Step 4 — Rename the file
+
+Because it is GZIP data, give it a .gz extension:
+
+mv data8.bin data.gz
+
+Check:
+
+ls
+
+You should see:
+
+data.gz
+Step 5 — Decompress the GZIP file
+
+Run:
+
+gzip -d data.gz
+
+This extracts the file.
+
+Now check:
+
+ls
+
+You should have another file, such as:
+
+data
+Step 6 — Identify the new file
+
+Don't assume what the new file is.
+
+Always use:
+
+file data
+
+For example, it might say:
+
+data: bzip2 compressed data
+
+That means the next layer is BZIP2.
+
+Step 7 — Rename it if necessary
+
+For example:
+
+mv data data.bz2
+
+Then decompress:
+
+bzip2 -d data.bz2
+
+Check the result:
+
+ls
+
+Then identify it again:
+
+file data
+Step 8 — Repeat the process
+
+This is the most important part of Level 12.
+
+Every time you get a new file:
+
+① Identify it
+file data
+② Rename it according to its format
+
+Examples:
+
+mv data data.gz
+mv data data.bz2
+mv data data.tar
+③ Extract it
+
+For GZIP:
+
+gzip -d data.gz
+
+For BZIP2:
+
+bzip2 -d data.bz2
+
+For TAR:
+
+tar -xf data.tar
+
+Then identify the resulting file again:
+
+file data
+Step 9 — Why file is so important
+
+You cannot simply keep using gzip -d.
+
+For example:
+
+file data
+
+might tell you:
+
+gzip compressed data
+
+So use:
+
+gzip -d data.gz
+
+Later it might say:
+
+bzip2 compressed data
+
+So now use:
+
+bzip2 -d data.bz2
+
+Later it could say:
+
+POSIX tar archive
+
+So use:
+
+tar -xf data.tar
+
+The file command tells you what extraction method to use next.
+
+Step 10 — Continue until you reach ASCII text
+
+Eventually:
+
+file data
+
+will show something like:
+
+data: ASCII text
+
+That means you've reached the final readable file.
+
+Now run:
+
+cat data
+
+You'll see:
+
+The password is XXXXXXXXXXXXX
+
+That is the password for Bandit Level 13.
+
+bandit13: qQYQiHOBPR8zR61qxYqX45quvihF2uzk
+
