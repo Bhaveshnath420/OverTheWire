@@ -1,0 +1,63 @@
+bamdit level 10-11
+
+Step 1: Log in to Bandit Level 10
+
+You should be at:
+
+bandit10@bandit:~$
+
+The goal is to find the password for Bandit Level 11.
+
+Step 2: Check what files are available
+
+Run:
+
+ls
+
+You will see:
+
+data.txt
+
+So the information we need is inside data.txt.
+
+Step 3: Display the file
+
+Run:
+
+cat data.txt
+
+You will get something like:
+
+VGhlIHBhc3N3b3JkIGlzIH...
+
+This doesn't look like a normal password. It is Base64-encoded text.
+
+Step 4: Decode the Base64 text
+
+Use:
+
+base64 -d data.txt
+
+Here:
+
+base64 → Base64 encoding/decoding command
+-d → decode
+data.txt → file containing the encoded text
+
+The command outputs:
+
+The password is ...
+
+The text after "The password is" is the password for the next level.
+
+Step 5: Log in to Level 11
+
+Exit the current session:
+
+exit
+
+Then connect to Level 11 using the decoded password:
+
+ssh bandit11@bandit.labs.overthewire.org -p 2220
+
+When it asks for the password, enter the password you obtained from Step 4.
