@@ -1,0 +1,79 @@
+The goal is to send the current Bandit 14 password to a network service running on:
+
+localhost:30000
+
+If the correct password is submitted, the service gives you the password for Bandit Level 15.
+
+Step 1 — Make sure you are logged in as bandit14
+
+Your terminal should look similar to:
+
+bandit14@bandit:~$
+
+You are currently working as bandit14.
+
+Step 2 — Get the current password
+
+The password is stored in:
+
+/etc/bandit_pass/bandit14
+
+You can read it with:
+
+cat /etc/bandit_pass/bandit14
+
+This displays the current Bandit 14 password.
+
+Be careful when copying it: passwords are case-sensitive.
+
+Step 3 — Connect to the service
+
+Run:
+
+nc localhost 30000
+What does this mean?
+nc
+
+= Netcat, a command-line networking tool.
+
+localhost
+
+= the same machine you're currently using.
+
+30000
+
+= the TCP port where the Bandit service is listening.
+
+So the command means:
+
+Connect to port 30000 on this machine.
+
+Step 4 — Wait for the password prompt
+
+After running:
+
+nc localhost 30000
+
+the service waits for you to enter the current password.
+
+You may see something like:
+
+Wrong! Please enter the correct current password.
+
+if the password you entered was incorrect.
+
+Step 5 — Enter the Bandit 14 password
+
+When the connection is waiting for input, type/paste the password you obtained from:
+
+cat /etc/bandit_pass/bandit14
+
+Then press Enter.
+
+⚠️ Make sure there are no extra spaces and that uppercase/lowercase characters are exactly correct.
+
+Step 6 — If you get the correct password
+
+The service will return a message containing the password for the next level (Bandit 15).
+
+Copy that password and use it when connecting to:
