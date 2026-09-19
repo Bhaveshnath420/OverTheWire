@@ -1,0 +1,62 @@
+The goal is to find the password for Bandit Level 14.
+
+In this level, the password is stored in:
+
+/etc/bandit_pass/bandit14
+Step 1 — Check your current location
+
+You are logged in as:
+
+bandit14@bandit:~$
+
+The ~ means you are currently in your home directory.
+
+Step 2 — Try to enter bandit14
+
+You tried:
+
+cd /etc/bandit_pass/bandit14
+
+You got:
+
+-bash: cd: /etc/bandit_pass/bandit14: Not a directory
+Why?
+
+cd is used only to enter directories.
+
+But:
+
+/etc/bandit_pass/bandit14
+
+is a file, not a directory.
+
+So you cannot use cd directly on it.
+
+Step 3 — Enter the correct directory
+
+First enter:
+
+cd /etc/bandit_pass/
+
+Now your prompt becomes:
+
+bandit14@bandit:/etc/bandit_pass$
+
+This means you successfully entered the bandit_pass directory.
+
+Step 4 — Check what is inside
+
+Run:
+
+ls
+
+You should see files for the different Bandit levels, including:
+
+bandit14
+Step 5 — Read the bandit14 file
+
+Because bandit14 is a file, use cat:
+
+cat bandit14
+
+The terminal will display the password.
