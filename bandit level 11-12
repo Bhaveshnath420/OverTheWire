@@ -1,0 +1,135 @@
+Step 1 — Check the files
+
+First, run:
+
+ls
+
+You will see:
+
+data.txt
+
+This tells us that the file containing the password is data.txt.
+
+Step 2 — Read the file
+
+Run:
+
+cat data.txt
+
+You will see something similar to:
+
+Gur cnffjbeq vf ...
+
+This doesn't look like normal English.
+
+The important clue is that the challenge uses ROT13.
+
+Step 3 — Understand ROT13
+
+ROT13 means Rotate by 13 positions.
+
+For example:
+
+A → N
+B → O
+C → P
+...
+M → Z
+
+And the second half goes back:
+
+N → A
+O → B
+P → C
+...
+Z → M
+
+So:
+
+Gur → The
+cnffjbeq → password
+
+You don't need to manually decode every character.
+
+Step 4 — Use tr to decode ROT13
+
+Run:
+
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+What happens here?
+
+The command has two parts.
+
+Part 1:
+cat data.txt
+
+Reads the contents of data.txt.
+
+Part 2:
+tr 'A-Za-z' 'N-ZA-Mn-za-m'
+
+tr translates characters.
+
+It changes:
+
+A → N
+B → O
+C → P
+...
+
+This performs the ROT13 conversion.
+
+Step 5 — Understand the pipe |
+
+This symbol:
+
+|
+
+is called a pipe.
+
+It takes the output from the command on the left and sends it as input to the command on the right.
+
+So:
+
+cat data.txt | tr ...
+
+means:
+
+Read data.txt → send the text to tr → convert the ROT13 characters.
+
+Step 6 — Get the password
+
+After running:
+
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+
+you will get:
+
+The password is XXXXXXXX
+
+The text after "The password is" is the password for Bandit Level 12.
+
+Step 7 — Connect to Level 12
+
+If you're currently logged in as bandit11, you can exit:
+
+exit
+
+Then connect:
+
+ssh bandit12@bandit.labs.overthewire.org -p 2220
+
+Enter the password you decoded in Step 6.
+
+Commands to remember
+ls
+
+➡️ Lists files.
+
+cat data.txt
+
+➡️ Displays the file.
+
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+
+bandit12: GROozWPO8QyN0mGrjUkID0WCYkZiQxrN
